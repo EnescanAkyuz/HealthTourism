@@ -33,7 +33,7 @@ export default function AgenciesPage() {
         <main className="container" style={{ padding: '2rem 1rem' }}>
             <h1 style={{ fontSize: '2rem', fontWeight: 700, marginBottom: '2rem' }}>Öne Çıkan Acentalar</h1>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '250px 1fr', gap: '2rem', alignItems: 'start' }}>
+            <div className="agencies-layout">
                 <aside>
                     <Filters
                         treatments={treatments}

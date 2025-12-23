@@ -27,7 +27,7 @@ export default function ComparePage() {
                 </Link>
             </header>
 
-            <div style={{ overflowX: 'auto', paddingBottom: '1rem' }}>
+            <div className="table-responsive" style={{ paddingBottom: '1rem' }}>
                 <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '600px' }}>
                     <thead>
                         <tr>

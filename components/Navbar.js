@@ -1,5 +1,5 @@
 'use client';
-
+import { useState } from 'react';
 import Link from 'next/link';
 import { useComparison } from '@/context/ComparisonContext';
 import { useLanguage } from '@/context/LanguageContext';
@@ -9,6 +9,7 @@ export default function Navbar() {
     const { selectedAgencies } = useComparison();
     const { t } = useLanguage();
     const pathname = usePathname();
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     return (
         <nav className="glass" style={{
@@ -25,7 +26,8 @@ export default function Navbar() {
                     HealthHaven
                 </Link>
 
-                <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
+                {/* Desktop Menu */}
+                <div className="hide-on-mobile" style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
                     <Link href="/agencies" style={{
                         fontWeight: 500,
                         color: pathname === '/agencies' ? 'var(--primary)' : 'var(--text-main)',
@@ -56,10 +58,49 @@ export default function Navbar() {
                             </span>
                         )}
                     </Link>
-
-
                 </div>
+
+                {/* Mobile Menu Button */}
+                <button
+                    className="show-on-mobile"
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    style={{
+                        background: 'none',
+                        border: 'none',
+                        fontSize: '1.5rem',
+                        color: 'var(--text-main)',
+                        cursor: 'pointer'
+                    }}
+                >
+                    {isMobileMenuOpen ? '✕' : '☰'}
+                </button>
             </div>
+
+            {/* Mobile Menu Dropdown */}
+            {isMobileMenuOpen && (
+                <div className="mobile-menu">
+                    <Link
+                        href="/agencies"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        style={{
+                            fontWeight: 500,
+                            padding: '0.5rem',
+                            color: pathname === '/agencies' ? 'var(--primary)' : 'var(--text-main)'
+                        }}
+                    >
+                        {t('nav.marketplace')}
+                    </Link>
+
+                    <Link
+                        href="/compare"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="btn btn-secondary"
+                        style={{ justifyContent: 'center' }}
+                    >
+                        {t('nav.compare')} ({selectedAgencies.length})
+                    </Link>
+                </div>
+            )}
         </nav>
     );
 }

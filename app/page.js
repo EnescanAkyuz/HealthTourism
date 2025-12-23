@@ -12,7 +12,7 @@ export default function Home() {
         <main>
             <div style={{
                 position: 'relative',
-                height: '600px',
+                minHeight: '600px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',

@@ -17,12 +17,12 @@ export default async function AgencyDetailPage({ params }) {
     }
 
     return (
-        <main className="container" style={{ padding: '3rem 1rem' }}>
+        <main className="container" style={{ padding: '2rem 1rem' }}>
             <Link href="/agencies" style={{ display: 'inline-block', marginBottom: '1.5rem', color: 'var(--text-muted)' }}>
                 ← Acentaları Keşfetmeye Geri Dön
             </Link>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 2fr) minmax(0, 1fr)', gap: '3rem', alignItems: 'start' }}>
+            <div className="responsive-grid-2-1">
 
                 {/* Left Column: Content */}
                 <div>
@@ -30,14 +30,13 @@ export default async function AgencyDetailPage({ params }) {
                         <img src={agency.images[0]} alt={agency.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                     </div>
 
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
-                        <h1 style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--text-main)' }}>{agency.name}</h1>
-                        <span className="badge badge-primary" style={{ fontSize: '1.25rem', padding: '0.5rem 1rem' }}>{agency.rating} ★</span>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1rem' }}>
+                        <h1 style={{ fontSize: 'clamp(2rem, 5vw, 2.5rem)', fontWeight: 800, color: 'var(--text-main)', lineHeight: 1.2 }}>{agency.name}</h1>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                            <span className="badge badge-primary" style={{ fontSize: '1.25rem', padding: '0.5rem 1rem' }}>{agency.rating} ★</span>
+                            <span style={{ color: 'var(--text-muted)' }}>📍 {agency.city}, {agency.country}</span>
+                        </div>
                     </div>
-
-                    <p style={{ fontSize: '1.125rem', color: 'var(--text-muted)', marginBottom: '2rem' }}>
-                        📍 {agency.city}, {agency.country}
-                    </p>
 
                     <div style={{ marginBottom: '3rem' }}>
                         <h2 style={{ fontSize: '1.5rem', fontWeight: 600, marginBottom: '1rem' }}>Hakkımızda</h2>
@@ -87,7 +86,7 @@ export default async function AgencyDetailPage({ params }) {
                 </div>
 
                 {/* Right Column: CTA Box */}
-                <div style={{ position: 'sticky', top: '100px' }}>
+                <div className="sticky-sidebar">
                     <div style={{ backgroundColor: 'white', padding: '2rem', borderRadius: 'var(--radius-lg)', border: '1px solid #e2e8f0', boxShadow: 'var(--shadow-lg)' }}>
                         <h3 style={{ fontSize: '1.25rem', fontWeight: 600, marginBottom: '1.5rem' }}>İşçilikler?</h3>
 
